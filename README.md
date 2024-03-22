@@ -19,3 +19,8 @@ This change helps the server handle requests better. It makes sure that when som
 
 #### Commit 4 Reflection notes
 In this updated handle_connection function, there's a new condition added to handle the request for "/sleep". If the request is for "/sleep", it introduces a delay of 10 seconds using the `thread::sleep` function. When `thread::sleep(Duration::from_secs(10))` is called, the thread executing this code will pause its execution for 10 seconds. During this pause, the thread will not perform any further computation or execute any code.
+
+#### Commit 5 Reflection notes
+In `main.rs`, the updated main function starts by setting up a TCP listener on `127.0.0.1:7878`. It also establishes a thread pool capable of handling `4` threads. Then, it begins looping to manage incoming connections. For each new connection, the function extracts the stream, ensuring it's available, and assigns a task to the thread pool using a closure. This task invokes the `handle_connection` function, which is responsible for processing the received data. This approach allows the server to handle multiple connections simultaneously by distributing the workload among the available threads in the pool.
+
+In `lib.rs`, it sets up a `ThreadPool` structure to handle tasks across multiple threads. Each thread pool has worker threads that can execute tasks concurrently. When creating a new thread pool, it initializes worker threads and sets up a communication channel. The execute function adds a task to the channel, and worker threads pick up tasks from this channel and execute them.
