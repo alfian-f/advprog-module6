@@ -16,3 +16,6 @@ In this updated `handle_connection` function, we've made it clearer to understan
 This change helps the server handle requests better. It makes sure that when someone asks for the main page, they get it, and when they ask for something else, it tells them if it's not available. 
 
 ![Commit 3 screen capture](/assets/images/commit3.png)
+
+#### Commit 4 Reflection notes
+In this updated handle_connection function, there's a new condition added to handle the request for "/sleep". If the request is for "/sleep", it introduces a delay of 10 seconds using the `thread::sleep` function. When `thread::sleep(Duration::from_secs(10))` is called, the thread executing this code will pause its execution for 10 seconds. During this pause, the thread will not perform any further computation or execute any code.
